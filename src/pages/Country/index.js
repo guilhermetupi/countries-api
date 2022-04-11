@@ -87,16 +87,19 @@ export default function Country() {
                 <strong>Top level domain:</strong>
                 {countryData.tld.join(', ')}
               </p>
-              {borders.length && (
+              {borders.length ? (
                 <p className="border">
                   <strong>Border countries:</strong>
                   {borders.map((border) => (
-                    <span className={theme === 'light' ? 'light' : 'dark'}>
+                    <span
+                      className={theme === 'light' ? 'light' : 'dark'}
+                      key={border}
+                    >
                       {border}
                     </span>
                   ))}
                 </p>
-              )}
+              ) : null}
             </CountryInfoData>
           </CountryInfo>
         </CountryContainer>

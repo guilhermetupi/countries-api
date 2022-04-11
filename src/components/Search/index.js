@@ -25,7 +25,7 @@ export default function Search({ handleSearch, handleRegionFilter }) {
       </SearchInput>
       <RegionSelect className={theme === 'light' ? 'light' : 'dark'}>
         <select onChange={(e) => handleRegionFilter(e.target.value)}>
-          <option value="" selected>
+          <option value="" defaultValue>
             Filter by region
           </option>
           {regions.sort().map((region) => (
