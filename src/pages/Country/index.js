@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import {
   BackButton,
@@ -21,6 +21,7 @@ export default function Country() {
   const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
+    setBorders([]);
     axios
       .get(`https://restcountries.com/v3.1/alpha/${cca2}`)
       .then((response) => {
@@ -30,13 +31,13 @@ export default function Country() {
             .get(`https://restcountries.com/v3.1/alpha/${border}`)
             .then((res) => {
               setBorders((prevState) => [
-                ...new Set([...prevState, res.data[0].name.common]),
+                ...new Set([...prevState, res.data[0]]),
               ]);
             });
         });
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [cca2]);
 
   return (
     <Container className={theme === 'light' ? 'light' : 'dark'}>
@@ -90,13 +91,14 @@ export default function Country() {
               {borders.length ? (
                 <p className="border">
                   <strong>Border countries:</strong>
-                  {borders.map((border) => (
-                    <span
+                  {borders.map(({ name, cca2: borderCca2 }) => (
+                    <Link
+                      to={`/country/${borderCca2}`}
                       className={theme === 'light' ? 'light' : 'dark'}
-                      key={border}
+                      key={borderCca2}
                     >
-                      {border}
-                    </span>
+                      {name.common}
+                    </Link>
                   ))}
                 </p>
               ) : null}
