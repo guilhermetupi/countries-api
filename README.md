@@ -37,6 +37,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [GitHub Repository](https://github.com/guilhermetupi/countries-api)
+- Live URL: [Netlify website](https://country-api-theme-switch.netlify.app/)
 
 ## My process
 
