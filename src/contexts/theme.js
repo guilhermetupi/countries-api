@@ -12,7 +12,7 @@ export default function ThemeContextProvider({ children }) {
     try {
       setTheme(JSON.parse(localStorage.getItem('theme')));
     } catch (e) {
-      console.error(e);
+      setTheme('light');
     }
   }, []);
 
